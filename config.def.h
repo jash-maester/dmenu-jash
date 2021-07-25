@@ -5,7 +5,8 @@ static int topbar = 1;                      /* -b  option; if 0, dmenu appears a
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
 	"Noto Sans:size=11",
-        "monospace:size=10"
+	"FiraCode Nerd Font:size=11",
+    "monospace:size=10"
 };
 
 static const char* const nord[]     = { "#2e3440", "#3b4252", "#434c5e", "#4c566a",
