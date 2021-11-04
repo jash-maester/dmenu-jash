@@ -1,5 +1,6 @@
 #!/bin/sh
 
+termcmd="st"
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
 	cache=$cachedir/dmenu_run
@@ -47,4 +48,11 @@ awk -v histfile=$historyfile '
 				print history[f],f | "sort -t '\t' -k1rn >" histfile
 		}
 	' \
-	| while read cmd; do ${SHELL:-"/bin/sh"} -c "$cmd" & done
+	| while read cmd
+	do
+		case $cmd in
+			*\! ) ${termcmd} -e "$(printf "%s" "${cmd}" | cut -d'!' -f1)";;
+			* ) ${SHELL:-"/bin/sh"} -c "$cmd" ;;
+		esac
+	done
+exit
